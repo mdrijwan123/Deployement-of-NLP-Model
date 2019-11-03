@@ -1,0 +1,7 @@
+flask=1.1.1
+pandas=0.25.1
+pickleshare=0.7.5
+numpy=1.16.4
+nltk=3.4.5
+scikit-learn=0.21.1
+
