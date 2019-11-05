@@ -1,13 +1,11 @@
 from flask import Flask,render_template,url_for,request
 import pandas as pd 
-import pickle
 import numpy as np
-from nltk.stem.porter import *
+from nltk.stem.porter import PorterStemmer
 import re
 import string
-from sklearn.feature_extraction.text import CountVectorizer,TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.externals import joblib
 
 ## Definitions
 def remove_pattern(input_txt,pattern):
@@ -67,4 +65,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(port=4000,debug=True)
+    app.run(port=4000)
