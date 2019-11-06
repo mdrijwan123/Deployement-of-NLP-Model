@@ -1,22 +1,18 @@
-FROM python:3.6-alpine
+FROM frolvlad/alpine-python-machinelearning:latest
 
-RUN adduser -D spam_classifier && \
-    adduser spam_classifier tty
+RUN pip install --upgrade pip
 
-WORKDIR /home/spam_classifier
-COPY requirements.txt requirements.txt
-RUN python -m venv venv && \
-    venv/bin/pip install --no-cache-dir --upgrade pip && \
-    venv/bin/pip install --no-cache-dir -r requirements.txt && \
-    venv/bin/python -m nltk.downloader -d /home/spam_classifier/venv/nltk_data punkt && \
-    venv/bin/python -m nltk.downloader -d /home/spam_classifier/venv/nltk_data stopwords
-
-RUN apk del .build-dependency
+WORKDIR /app
 
 COPY static static/
-COPY templates template/
+COPY templates templates/
+COPY sentiment.tsv sentiment.tsv
 COPY app.py app.py
-
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+RUN python -m nltk.downloader punkt
 EXPOSE 4000
-ENTRYPOINT ["python3"]
+
+ENTRYPOINT  ["python"]
+
 CMD ["app.py"]
