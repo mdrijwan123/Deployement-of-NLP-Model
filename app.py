@@ -43,10 +43,14 @@ cv = CountVectorizer()
 X = cv.fit_transform(X) # Fit the Data
 X = pd.concat([data['body_len'],data['punct%'],pd.DataFrame(X.toarray())],axis = 1)
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 ## Using Classifier
-clf = LogisticRegression()
-clf.fit(X_train,y_train)
+clf = LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='warn', n_jobs=None, penalty='l2',
+                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   warm_start=False)
+clf.fit(X,y)
 
 
 @app.route('/')
