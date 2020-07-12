@@ -37,7 +37,6 @@ data['body_len'] = data['body_text'].apply(lambda x:len(x) - x.count(" "))
 data['punct%'] = data['body_text'].apply(lambda x:count_punct(x))
 X = data['tidy_tweet']
 y = data['label']
-print(type(X))
 # Extract Feature With CountVectorizer
 cv = CountVectorizer()
 X = cv.fit_transform(X) # Fit the Data
@@ -47,8 +46,8 @@ from sklearn.model_selection import train_test_split
 ## Using Classifier
 clf = LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=True,
                    intercept_scaling=1, l1_ratio=None, max_iter=100,
-                   multi_class='warn', n_jobs=None, penalty='l2',
-                   random_state=None, solver='warn', tol=0.0001, verbose=0,
+                   multi_class='auto', n_jobs=None, penalty='l2',
+                   random_state=None, solver='liblinear', tol=0.0001, verbose=0,
                    warm_start=False)
 clf.fit(X,y)
 
