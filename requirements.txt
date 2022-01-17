@@ -4,7 +4,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 joblib==0.16.0
 MarkupSafe==1.1.1
-nltk==3.6.6
+nltk==3.6.7
 python-dateutil==2.8.1
 pytz==2020.1
 regex
